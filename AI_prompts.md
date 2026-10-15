@@ -331,8 +331,14 @@ _None yet._
 
 ### Follow-up prompts
 
-_None yet._
+> (Expected file layout screenshot: hw5/ with AI_prompts.md, requirements.txt, .env.example, .gitignore, .mcp.json, README.md, data/, mcp_server/server.py + README.md, frontend/, backend/main.py, models.py, prompts/*.md, output/ with harness.md, mcp_smoke.json, desk_tickets.html, design.md, resolved_tickets.json, resolved_board.html, audit_trail.json, github_url.txt)
+
+> First rewrite the commit to use my GitHub noreply email, then publish it as a public repo at Mamometi/hw5.
 
 ### What needed clarification / improvement
 
-_To be added._
+- **Matching the expected layout.** I shared the required file tree. The MCP server was renamed from `mcp_server/mcp_server.py` to `mcp_server/server.py`, and every reference was updated. Root `README.md`, `requirements.txt` (pinned to the installed versions) and `.gitignore` were added. `output/mcp_smoke.json` still names the old file because it records the P4 test as it ran.
+- **Unsafe before publishing.** `.mcp.json` held absolute paths containing my Mac username, so it was switched to relative paths and checked to still start all 16 tools. The runtime log, lock files, `.env`, `.venv` and `node_modules` are git-ignored. A scan confirmed my real Portkey key is in no committed file and nowhere in git history, and `.env` was never committed.
+- **My email.** The first commit used my Yale email from git settings. Before publishing I asked for it to be rewritten to my GitHub noreply address, set for this repository only, so the public history contains no `yale.edu` address.
+- **Honest publishing.** The first `gh repo create --push` created the repo, but the push failed with "remote end hung up". It was retried with a larger HTTP buffer and confirmed with `git ls-remote`. Only then was `output/github_url.txt` written.
+- **Matching zip.** `hw5.zip` is built with `git archive` from the final commit, so it contains exactly what's in the repository.
