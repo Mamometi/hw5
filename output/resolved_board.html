@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Customs: Resolved Board (P9)</title>
+<style>
+  :root { --yale:#00356B; --paper:#f5f2ec; --ink:#18202c; --muted:#6b7280; --line:#e4ded3; --ok:#2d6a3a; --okt:#e6f2e8; --warn:#946200; --warnt:#fcf1db; --bad:#a3271f; --badt:#fbe7e5; }
+  * { box-sizing: border-box; } body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+  header.top { background:var(--yale); color:#fff; padding:22px 28px; border-bottom:3px solid #286dc0; }
+  header.top h1 { margin:0; font:600 26px Georgia,serif; } header.top p { margin:4px 0 0; opacity:.8; }
+  main { max-width:1180px; margin:0 auto; padding:24px 20px 60px; display:grid; gap:22px; }
+  .summary { display:flex; flex-wrap:wrap; gap:10px; } .stat { background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 14px; } .stat b { display:block; font:600 22px Georgia,serif; color:var(--yale); }
+  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px 22px; box-shadow:0 4px 16px -8px rgba(0,38,77,.15); }
+  .card header { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap; }
+  .eyebrow { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#286dc0; }
+  h2 { margin:2px 0 0; font:600 24px Georgia,serif; color:var(--yale); } h2 small { font:400 14px -apple-system,sans-serif; color:var(--muted); }
+  h3 { margin:0 0 6px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+  .badge { font-weight:700; font-size:13px; padding:4px 11px; border-radius:999px; } .badge.ok { background:var(--okt); color:var(--ok); } .badge.warn { background:var(--warnt); color:var(--warn); }
+  .meta { display:flex; gap:20px; flex-wrap:wrap; font-size:13.5px; color:#3d4553; margin:6px 0 12px; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:14px; } @media (max-width:760px) { .cols { grid-template-columns:1fr; } }
+  .cols ul { margin:0; padding-left:18px; font-size:13.5px; } .flags { background:var(--badt); border-radius:10px; padding:10px 14px; color:var(--bad); }
+  figure { margin:16px 0 0; } figure img { width:100%; border:1px solid var(--line); border-radius:10px; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:6px; }
+  .recon { border-radius:10px; padding:12px 16px; background:var(--okt); border-left:4px solid var(--ok); }
+</style></head><body>
+<header class="top"><h1>Campus Customs: Resolved Board</h1><p>P9 desk run on the working database · desk date 2026-08-31 · every figure from <code>output/audit_trail.json</code> and <code>data/campus_customs_new.db</code></p></header>
+<main>
+  <div class="summary">
+    <div class="stat"><b>1 of 3</b>tickets resolved</div>
+    <div class="stat"><b>$3,400.00 → $160.00</b>checking (2 payments, −$3,240.00)</div>
+    <div class="stat"><b>3</b>human approvals by MM</div>
+    <div class="stat"><b>138,370</b>tokens over 4 runs</div>
+  </div>
+  <div class="recon"><b>✓ Cash reconciles:</b> $3,400.00 − $3,240.00 = $160.00, matching <code>cash_accounts.checking</code> = $160.00.</div>
+  <p><b>Only ticket 102 is resolved.</b> Tickets 101 and 103 completed their agent runs and every human decision was made, but both are still blocked on stock (see the flags). They're shown as not resolved rather than marked done.</p>
+  
+  <article class="card">
+    <header><div><div class="eyebrow">Ticket #101 · customer order</div><h2>Bulldog tee <small>from Tauhid Zaman</small></h2></div>
+      <span class="badge warn">Not resolved · waiting_on_vendor</span></header>
+    <p>Not resolved. Status waiting_on_vendor. Invoice 501 ($840.00) was paid after MM approved request #1, so the size S reprint is under way, but size S stock is still 0. The order can&#x27;t ship until the reprint arrives (earliest 2026-09-05 per Bulldog Print Co&#x27;s 5-day lead time).</p>
+    <div class="meta"><div><b>Runs</b> 2 · 59,148 tokens</div><div><b>Delegation</b> Boss → Customer Service → Accounting · Boss → Customer Service</div></div>
+    <div class="cols"><div><h3>Human approvals</h3><ul><li>#1 invoice payment $840.00: <b>executed</b> by MM · money moved</li></ul></div><div class="flags"><h3>Flags</h3><ul><li>Not resolved: size S stock is 0; the paid reprint hasn&#x27;t arrived (earliest 2026-09-05). No tool records a delivery, so the order can&#x27;t ship yet.</li></ul></div></div>
+    <figure><a href="screenshots/ticket-101-final.png"><img src="screenshots/ticket-101-final.png" alt="React dashboard showing ticket 101 after its last run" loading="lazy"></a>
+      <figcaption>Screenshot of the React dashboard (localhost:5173) with ticket #101 selected after its last run, taken in Chrome against the working database. Final state: <code>waiting_on_vendor</code>.</figcaption></figure>
+  </article>
+  <article class="card">
+    <header><div><div class="eyebrow">Ticket #102 · rent notice</div><h2>Rent due <small>from Elm City Properties</small></h2></div>
+      <span class="badge ok">Resolved · resolved</span></header>
+    <p>Resolved. Facilities verified the notice against lease 1 (landlord, $2,400.00 and the 2026-09-02 due date all matched), and Accounting filed request #2. MM approved it, the payment executed ($2,400.00 from checking), the lease&#x27;s next_due moved to 2026-10-02, and the ticket closed as resolved.</p>
+    <div class="meta"><div><b>Runs</b> 1 · 33,806 tokens</div><div><b>Delegation</b> Boss → Facilities → Accounting</div></div>
+    <div class="cols"><div><h3>Human approvals</h3><ul><li>#2 rent payment $2,400.00: <b>executed</b> by MM · money moved</li></ul></div></div>
+    <figure><a href="screenshots/ticket-102-final.png"><img src="screenshots/ticket-102-final.png" alt="React dashboard showing ticket 102 after its last run" loading="lazy"></a>
+      <figcaption>Screenshot of the React dashboard (localhost:5173) with ticket #102 selected after its last run, taken in Chrome against the working database. Final state: <code>resolved</code>.</figcaption></figure>
+  </article>
+  <article class="card">
+    <header><div><div class="eyebrow">Ticket #103 · price override</div><h2>Bulk hoodie discount <small>from Yale AI Club</small></h2></div>
+      <span class="badge warn">Not resolved · in_progress</span></header>
+    <p>Not resolved. Status in_progress. MM approved price override #3 at $52.00/unit (10.3% off $58.00, still $30.00 above the $22.00 cost), and no money moved. Only 8 of the 20 size M hoodies are in stock. No restock was proposed or funded, so the order can&#x27;t be filled yet.</p>
+    <div class="meta"><div><b>Runs</b> 1 · 45,416 tokens</div><div><b>Delegation</b> Boss → Accounting → Inventory → Customer Service</div></div>
+    <div class="cols"><div><h3>Human approvals</h3><ul><li>#3 price override $52.00/unit: <b>approved</b> by MM · no money moved</li></ul></div><div class="flags"><h3>Flags</h3><ul><li>Not resolved: only 8 of 20 size M in stock; restock (≥ $264 at unit cost) not proposed or funded, and $160.00 cash is not enough.</li><li>Accounting didn&#x27;t flag the $160 vs ~$264 restock shortfall (expected in P6).</li></ul></div></div>
+    <figure><a href="screenshots/ticket-103-final.png"><img src="screenshots/ticket-103-final.png" alt="React dashboard showing ticket 103 after its last run" loading="lazy"></a>
+      <figcaption>Screenshot of the React dashboard (localhost:5173) with ticket #103 selected after its last run, taken in Chrome against the working database. Final state: <code>in_progress</code>.</figcaption></figure>
+  </article>
+</main></body></html>

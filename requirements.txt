@@ -1,0 +1,10 @@
+# Campus Customs (hw5). Python 3.12+ (developed on 3.14).
+# One environment for the MCP server, the agents and the FastAPI backend:
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+fastmcp==4.1.0
+pydantic==2.14.1
+pydantic-ai-slim[openai,mcp]==2.56.0
+openai==3.31.0
+python-dotenv==1.2.4
+fastapi==0.143.1
+uvicorn[standard]==0.54.0
